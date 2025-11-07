@@ -1,4 +1,4 @@
-# [Your Project Name, e.g., "PharmaDiscover AI"]
+# AtreyaCare
 
 **An Agentic AI solution to accelerate drug repurposing and product innovation for pharmaceuticals.**
 
