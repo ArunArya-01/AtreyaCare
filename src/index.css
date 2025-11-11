@@ -125,3 +125,47 @@ All colors MUST be HSL.
     @apply bg-background text-foreground;
   }
 }
+/* Add to your main CSS file (e.g., src/index.css) */
+
+@layer base {
+  /* ... your existing base styles ... */
+}
+
+/* Make sure you have the keyframes for your animations */
+@keyframes float {
+  0%, 100% {
+    transform: translateY(-2px);
+  }
+  50% {
+    transform: translateY(2px);
+  }
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
+/* Add this fade-in animation for the agent list */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-float {
+  animation: float 4s ease-in-out infinite;
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.5s ease-out forwards;
+}
