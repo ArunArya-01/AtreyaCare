@@ -1,0 +1,127 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
+All colors MUST be HSL.
+*/
+
+@layer base {
+  :root {
+    /* Deep Midnight AI Console Theme */
+    --background: 220 50% 8%;
+    --foreground: 0 0% 100%;
+
+    --card: 220 45% 12%;
+    --card-foreground: 0 0% 100%;
+
+    --popover: 220 45% 10%;
+    --popover-foreground: 0 0% 100%;
+
+    /* Cybernetic Teal - Primary Accent */
+    --primary: 191 100% 50%;
+    --primary-foreground: 220 50% 8%;
+
+    /* Neural-Glow Purple - Secondary Accent */
+    --secondary: 266 100% 60%;
+    --secondary-foreground: 0 0% 100%;
+
+    /* Light Cyber Gray */
+    --muted: 220 30% 20%;
+    --muted-foreground: 214 41% 78%;
+
+    --accent: 191 100% 50%;
+    --accent-foreground: 220 50% 8%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 220 30% 25%;
+    --input: 220 30% 20%;
+    --ring: 191 100% 50%;
+
+    --radius: 0.75rem;
+
+    /* Glassmorphism tokens */
+    --glass-bg: 220 45% 12% / 0.4;
+    --glass-border: 220 30% 60% / 0.2;
+    --glass-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+
+    /* Glow effects */
+    --glow-teal: 0 0 20px hsl(191 100% 50% / 0.5);
+    --glow-purple: 0 0 20px hsl(266 100% 60% / 0.5);
+
+    /* Animation timing */
+    --transition-smooth: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+}
+
+@layer utilities {
+  .glass {
+    background: hsla(var(--glass-bg));
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid hsla(var(--glass-border));
+    box-shadow: var(--glass-shadow);
+  }
+
+  .glow-teal {
+    box-shadow: var(--glow-teal);
+  }
+
+  .glow-purple {
+    box-shadow: var(--glow-purple);
+  }
+
+  .text-gradient-teal {
+    background: linear-gradient(135deg, hsl(191 100% 50%), hsl(191 100% 70%));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .text-gradient-purple {
+    background: linear-gradient(135deg, hsl(266 100% 60%), hsl(280 100% 70%));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .animate-float {
+    animation: float 6s ease-in-out infinite;
+  }
+
+  @keyframes float {
+    0%, 100% {
+      transform: translateY(0px);
+    }
+    50% {
+      transform: translateY(-20px);
+    }
+  }
+
+  .animate-pulse-glow {
+    animation: pulse-glow 2s ease-in-out infinite;
+  }
+
+  @keyframes pulse-glow {
+    0%, 100% {
+      opacity: 1;
+      box-shadow: var(--glow-teal);
+    }
+    50% {
+      opacity: 0.8;
+      box-shadow: 0 0 40px hsl(191 100% 50% / 0.8);
+    }
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+  }
+}
