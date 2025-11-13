@@ -58,11 +58,15 @@ The Master Agent will then delegate tasks to a team of specialized Sub-Agents.
 
 ## Technology Stack
 
-* **AI Framework:** [e.g., LangChain, LlamaIndex]
-* **LLMs:** [e.g., OpenAI GPT-4, Llama 3, Claude 3,Google Gemini]
+* **AI Framework:** -
+* **LLMs:** -
 * **Backend:** [e.g., Python (Flask/FastAPI)]
 * **Databases:** [e.g., VectorDB (Pinecone/ChromaDB), RelationalDB (PostgreSQL)]
 * **Frontend:** [e.g., Streamlit, React]
-* **Data Sources:** [e.g., PubMed API, ClinicalTrials.gov API, Google Scholar]
+* **Data Sources:** -
 
 ---
+## Updates
+* Tech Stack will be updated later 
+
+
