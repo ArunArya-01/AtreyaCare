@@ -5,11 +5,8 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import AgentStatus from "@/components/AgentStatus";
 import { ArrowLeft } from "lucide-react";
+import neuralBg from "../assests/neural-network-bg.jpg";
 
-// Assuming HeroSection.tsx is in src/components/
-import neuralBg from '../assests/neural-network-bg.jpg';
-
-// --- Our Multi-Agent Setup ---
 const AGENT_LIST = [
   "IQVIA Insights Agent",
   "EXIM Trade Agent",
@@ -21,11 +18,11 @@ const AGENT_LIST = [
 ];
 
 type AgentStatusState = "pending" | "running" | "completed";
+
 interface Agent {
   name: string;
   status: AgentStatusState;
 }
-// ------------------------------
 
 const delay = (ms: number) => new Promise(res => setTimeout(res, ms));
 
@@ -41,16 +38,16 @@ const HeroSection = () => {
     await delay(500);
 
     for (let i = 0; i < AGENT_LIST.length; i++) {
-      setAgents(currentAgents => 
-        currentAgents.map((agent, index) => 
+      setAgents(prev =>
+        prev.map((agent, index) =>
           index === i ? { ...agent, status: "running" } : agent
         )
       );
-      
+
       await delay(1000 + Math.random() * 1000);
 
-      setAgents(currentAgents => 
-        currentAgents.map((agent, index) => 
+      setAgents(prev =>
+        prev.map((agent, index) =>
           index === i ? { ...agent, status: "completed" } : agent
         )
       );
@@ -61,7 +58,6 @@ const HeroSection = () => {
     if (query.trim() === "") return;
     setIsProcessing(true);
     runAgentSimulation();
-    console.log("Analysis started with query:", query);
   };
 
   const handleExampleQuery = () => {
@@ -75,13 +71,13 @@ const HeroSection = () => {
   };
 
   return (
-    <section 
+    <section
       id="home"
       className="relative min-h-screen flex items-center justify-center overflow-hidden"
     >
-      {/* Animated Background (Unchanged from your code) */}
+      {/* Background */}
       <div className="absolute inset-0 z-0">
-        <div 
+        <div
           className="absolute inset-0 bg-cover bg-center animate-float"
           style={{
             backgroundImage: `url(${neuralBg})`,
@@ -105,79 +101,63 @@ const HeroSection = () => {
         </div>
       </div>
 
-      {/* Content - This is now conditional! */}
+      {/* Content */}
       <div className="relative z-10 max-w-4xl mx-auto px-6 text-center w-full">
-        
+
         {!isProcessing ? (
-          // === PART 1: The Query UI ===
+          // ============================
+          // PART 1: QUERY INPUT UI
+          // ============================
           <div className="animate-fade-in">
-            {/* *
-              * THE CHANGE IS HERE 
-              *
-            */}
             <h1 className="text-6xl md:text-7xl font-bold mb-8 text-gradient-teal animate-float">
               AtreyaCare Master Agent is Online
             </h1>
-            
-            <div className="glass rounded-2xl p-8 mb-8 max-w-2xl mx-auto">
+
+            <p className="text-lg text-muted-foreground mb-6">
+              Enter any healthcare, pharmaceutical, or research query to begin analysis.
+            </p>
+
+            <div className="flex gap-3 max-w-xl mx-auto mb-6">
               <Input
-                type="text"
-                placeholder="Awaiting complex query... (e.g., Analyze repurposing options for Molecule X)"
+                placeholder="Enter your query..."
                 value={query}
                 onChange={(e) => setQuery(e.target.value)}
-                className="w-full h-14 bg-transparent border-none text-lg placeholder:text-muted-foreground/60 focus-visible:ring-0"
               />
+              <Button onClick={handleBeginAnalysis}>Analyze</Button>
             </div>
 
-            <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-              <Button 
-                variant="glow" 
-                size="xl"
-                onClick={handleBeginAnalysis}
-                className="min-w-[200px]"
-                disabled={query.trim() === ""}
-              >
-                Begin Analysis
-              </Button>
-              
-              <Button 
-                variant="glass" 
-                size="xl"
-                onClick={handleExampleQuery}
-                className="min-w-[280px]"
-              >
-                Click to try: "Repurposing options for Molecule X"
-              </Button>
-            </div>
+            <Button variant="outline" onClick={handleExampleQuery}>
+              Try Example Query
+            </Button>
           </div>
 
         ) : (
-
-          // === PART 2: The Processing UI (New) ===
+          // ============================
+          // PART 2: PROCESSING VIEW
+          // ============================
           <div className="animate-fade-in w-full max-w-2xl mx-auto">
             <div className="flex items-center justify-between mb-8">
               <Button variant="ghost" onClick={handleReset} className="text-muted-foreground">
                 <ArrowLeft className="h-4 w-4 mr-2" />
                 New Query
               </Button>
+
               <h2 className="text-3xl font-bold text-gradient-teal animate-float">
                 Processing Request...
               </h2>
-              <div className="w-24"></div> {/* Spacer */}
+
+              <div className="w-24" />
             </div>
 
-            {/* The list of agents */}
+            {/* Agent list */}
             <div className="flex flex-col gap-3">
-              {agents.map((agent, index) => (
-                <AgentStatus
-                  key={agent.name}
-                  agentName={agent.name}
-                  status={agent.status}
-                />
+              {agents.map(agent => (
+                <AgentStatus key={agent.name} agentName={agent.name} status={agent.status} />
               ))}
             </div>
           </div>
         )}
+
       </div>
     </section>
   );
