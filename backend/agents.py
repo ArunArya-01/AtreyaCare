@@ -1,112 +1,133 @@
 import time
 import random
 
-# --- SIMULATION MODE: EY TECHATHON ARCHITECTURE  ---
-# This matches the specific "Worker Agents" defined in your PPT.
+# --- SMART KNOWLEDGE BASE (Architecture Aligned) ---
+# This data is structured EXACTLY to match the output requirements of your 
+# specific agents (IQVIA, EXIM, Patent, etc.) defined in your architecture diagram.
 
-# 1. IQVIA INSIGHTS AGENT
-def get_iqvia_data(disease):
-    print(f"📊 IQVIA Agent: Querying market size and competitor data for {disease}...")
-    time.sleep(1)
-    return f"Market size for {disease} is $4.5B (CAGR 12%). Top competitors: Novarits, Pfizer. High unmet need in pediatric segments."
+DATA_VAULT = {
+    "metformin": {
+        # 1. IQVIA Agent Output (Market Size, Growth, Competitor Table)
+        "iqvia": """
+| Metric | Data | Trend |
+| :--- | :--- | :--- |
+| **Market Size** | $64 Billion (Global) | 🟢 +12.5% YoY |
+| **Top Competitors** | Novartis, Elysium Health, BioAge | 🟡 High Competition |
+| **Patient Segment** | Geriatric (65+) & Preventative Longevity | 🟢 Expanding |
+""",
+        # 2. EXIM Trade Agent Output (Import/Export Trends)
+        "exim": """
+* **Global Trade:** High export volume of API from India (Gujarat/Telangana hubs).
+* **Supply Risk:** **Low**. Multiple FDA-approved facilities available.
+* **Pricing Analysis:** API cost has stabilized at $12/kg (down 5% YoY).
+""",
+        # 3. Patent Landscape Agent Output (Expiry Tables & Risk Flags)
+        "patent": """
+| Patent Type | Status | Expiry Date | Risk |
+| :--- | :--- | :--- | :--- |
+| **Composition of Matter** | 🔴 EXPIRED | 2002 | Low |
+| **Extended Release (XR)** | 🔴 EXPIRED | 2018 | Low |
+| **Method of Use (Aging)** | 🟢 **OPEN** | Available for Filing | **Opportunity** |
+* **FTO Analysis:** Freedom-to-Operate confirmed for new longevity indications.
+""",
+        # 4. Clinical Trials Agent Output (Pipeline Table)
+        "clinical": """
+| Trial ID | Phase | Indication | Status |
+| :--- | :--- | :--- | :--- |
+| **NCT02432287 (TAME)** | Phase 3 | Aging / Longevity | 🟢 Recruiting |
+| **NCT0432** | Phase 2 | Neuro-protection | 🟡 Completed |
+* **Mechanism:** AMPK Activation & mTOR Inhibition aligned with anti-aging pathways.
+""",
+        # 5. Internal Insights Agent Output (PDF Summaries)
+        "internal": """
+* **Source:** `Metformin_Bioavailability_v2.pdf` (Internal R&D Repository)
+* **Key Takeaway:** We have a proprietary nano-formulation in the vault that increases bio-availability by 40%.
+* **Regulatory:** Bio-equivalence (BE) study protocols are pre-approved.
+""",
+        # 6. Web Intelligence Agent Output (Guidelines, News)
+        "web": """
+* **FDA Guidance:** Recently signaled openness to "frailty" as a treatable endpoint.
+* **Latest News:** "Metformin hailed as first true anti-aging drug" - Nature Journal (2024).
+""",
+        "rec": "GO (High Priority)",
+        "score": "92%"
+    }
+}
 
-# 2. EXIM TRADE AGENT
-def get_exim_data(molecule):
-    print(f"🚢 EXIM Agent: Analyzing import/export trade flows for {molecule}...")
-    time.sleep(1)
-    return f"High export volume from India to EU. API sourcing costs have stabilized. Supply chain risk: Low."
+# --- 1. AGENT SIMULATION FUNCTIONS ---
 
-# 3. PATENT LANDSCAPE AGENT
-def get_patent_data(molecule):
-    print(f"⚖️ Patent Agent: Scanning global patent registries for {molecule}...")
-    time.sleep(1)
-    return f"Primary patent expired in 2023. Freedom-to-Operate (FTO) confirmed for new oral formulations."
+def run_agent(name, duration):
+    print(f"STATUS: {name} working...") 
+    time.sleep(duration) 
+    return "Done"
 
-# 4. CLINICAL TRIALS AGENT
-def get_clinical_data(molecule, disease):
-    print(f"🔬 Clinical Agent: Extracting pipeline info for {molecule} + {disease}...")
-    time.sleep(1)
-    return f"Found 3 Phase II trials with positive efficacy signal. Mechanism of Action (MoA) aligns with {disease} pathways."
+# --- 2. THE ORCHESTRATOR ---
 
-# 5. INTERNAL INSIGHTS AGENT
-def get_internal_data():
-    print(f"📂 Internal Agent: RAG Search across uploaded internal PDFs...")
-    time.sleep(1)
-    return "Internal R&D docs suggest we have a stable formulation ready for bio-equivalence testing."
-
-# 6. WEB INTELLIGENCE AGENT
-def get_web_intel(disease):
-    print(f"🌐 Web Intel Agent: Scanning FDA guidelines and real-world evidence...")
-    time.sleep(1)
-    return "FDA recently released guidance accelerating approvals for this therapeutic area."
-
-# --- THE MASTER AGENT (ORCHESTRATOR)  ---
 def run_repurposing_crew(molecule: str, disease: str):
     
-    # --- PHASE 1: TASK DECOMPOSITION ---
-    print(f"🤖 Master Agent: Receiving request for {molecule} -> {disease}.")
-    time.sleep(0.5)
-    print(f"🤖 Master Agent: Decomposing strategy into 6 parallel sub-tasks...")
-    time.sleep(1)
+    print(f"🚀 System: Initializing AtreyaCare for {molecule}...")
     
-    # --- PHASE 2: PARALLEL EXECUTION (Simulated) ---
+    # We run the agents strictly in the order of your diagram
+    run_agent("IQVIA Insights Agent", 1.2)   # Fetches Market Data
+    run_agent("EXIM Trade Agent", 1.0)       # Fetches Trade Flows
+    run_agent("Patent Landscape Agent", 1.5) # Checks FTO Risks
+    run_agent("Clinical Trials Agent", 1.2)  # Checks Pipeline
+    run_agent("Internal Insights Agent", 0.8)# Checks PDFs
+    run_agent("Web Intelligence Agent", 1.0) # Checks Guidelines
+    run_agent("Report Generator Agent", 1.0) # Builds PDF
     
-    # We run the specific agents from your PPT
-    iqvia_insight = get_iqvia_data(disease)
-    print(f"✅ IQVIA Agent: Task Complete.")
-    
-    exim_insight = get_exim_data(molecule)
-    print(f"✅ EXIM Agent: Task Complete.")
-    
-    patent_insight = get_patent_data(molecule)
-    print(f"✅ Patent Agent: Task Complete.")
-    
-    clinical_insight = get_clinical_data(molecule, disease)
-    print(f"✅ Clinical Agent: Task Complete.")
-    
-    internal_insight = get_internal_data()
-    print(f"✅ Internal Agent: Task Complete.")
-    
-    web_insight = get_web_intel(disease)
-    print(f"✅ Web Intel Agent: Task Complete.")
-    
-    # --- PHASE 3: SYNTHESIS & REPORTING ---
-    print("🧠 Master Agent: Synthesizing all evidence into Strategic Opportunity Map...")
-    time.sleep(2)
+    print("🧠 Master Agent: Synthesizing Final Strategic Dossier...")
 
-    # This report structure matches your "Output Form Factor" [cite: 19]
+    # --- GENERATE DATA ---
+    key = molecule.lower().strip()
+    
+    # Fallback for unknown drugs so the demo never crashes
+    if key in DATA_VAULT:
+        data = DATA_VAULT[key]
+    else:
+        # Generic Template for random inputs
+        data = {
+            "iqvia": f"| Metric | Data |\n|---|---|\n| Market Size | $4.2B |\n| Growth | 8% CAGR |",
+            "exim": "Standard sourcing routes available from APAC region.",
+            "patent": "| Type | Status |\n|---|---|\n| Primary | Expired |\n| FTO | **Clear** |",
+            "clinical": f"| Trial | Phase |\n|---|---|\n| NCT-Mock-01 | Phase 2 |",
+            "internal": "No specific internal documents found for this molecule.",
+            "web": "Recent medical journals cite potential efficacy.",
+            "rec": "GO (Opportunity)",
+            "score": f"{random.randint(75, 89)}%"
+        }
+
+    # --- FINAL REPORT (Formatted EXACTLY as per Agent Outputs) ---
     report = f"""
 # Strategic Repurposing Dossier: {molecule}
 
-**Target Indication:** {disease}  
-**Recommendation:** **GO (High Priority)** 🟢
+**Target:** {disease} | **Recommendation:** **{data['rec']}** 🟢 | **Feasibility:** **{data['score']}**
 
 ## 1. Executive Summary
-The **AtreyaCare Agentic System** has identified a high-value opportunity to repurpose **{molecule}**. By triangulating clinical signals with market gaps, we project a **$250M+ revenue opportunity**.
+The **AtreyaCare Master Agent** has synthesized data from 7 specialized workers. By triangulating clinical signals with market gaps, we project a high-value opportunity.
 
 ## 2. Multi-Agent Intelligence Findings
 
-### 📊 Market & Competitor Landscape (IQVIA Agent)
-* **Market Opportunity:** {iqvia_insight}
-* **Commercial Viability:** High. The specific patient segment identified is currently underserved.
+### 📊 IQVIA Insights Agent (Market Data)
+{data['iqvia']}
 
-### ⚖️ Legal & IP Strategy (Patent Agent)
-* **FTO Status:** {patent_insight}
-* **Strategy:** File for a "Method of Use" patent immediately to secure 3-year exclusivity.
+### 🚢 EXIM Trade Agent (Supply Chain)
+{data['exim']}
 
-### 🔬 Clinical Evidence (Clinical Trials Agent)
-* **Pipeline Analysis:** {clinical_insight}
-* **Safety:** Molecule has a known safety profile, reducing Phase 1 risks.
+### ⚖️ Patent Landscape Agent (Legal)
+{data['patent']}
 
-### 🚢 Supply Chain & Trade (EXIM Agent)
-* **Sourcing:** {exim_insight}
+### 🔬 Clinical Trials Agent (Evidence)
+{data['clinical']}
 
-### 📂 Internal Proprietary Data (Internal Agent)
-* **Knowledge Base:** {internal_insight}
+### 📂 Internal Insights Agent (Proprietary Data)
+{data['internal']}
+
+### 🌐 Web Intelligence Agent (Guidelines)
+{data['web']}
 
 ## 3. Strategic Conclusion
-This project aligns with corporate strategy. The "Internal Insights" agent confirms we have the formulation capabilities. 
-**Next Step:** Initiate Phase 2b bridging study.
+**Next Step:** Initiate Phase 2b bridging study immediately.
     """
     
     return report
