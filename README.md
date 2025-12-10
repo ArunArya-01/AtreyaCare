@@ -60,12 +60,13 @@ The Master Agent will then delegate tasks to a team of specialized Sub-Agents.
 
 * **AI Framework:** -
 * **LLMs:** -
-* **Backend:** [e.g., Python (Flask/FastAPI)]
-* **Databases:** [e.g., VectorDB (Pinecone/ChromaDB), RelationalDB (PostgreSQL)]
-* **Frontend:** [e.g., Streamlit, React]
-* **Data Sources:** -
+* **Backend:** Python (Flask/FastAPI)
+* **Databases:** VectorDB (Pinecone/ChromaDB), RelationalDB (PostgreSQL)
+* **Frontend:** React
+* **Data Sources:** 
 
 ---
+
 ## Updates
 * Tech Stack will be updated later 
 
